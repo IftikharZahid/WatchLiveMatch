@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Cricket By IftikharZahid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Simple style to make the player responsive */
+        .player-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .react-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /* Adding a subtle glow to the video player */
+        .video-glow {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 30px rgba(219, 39, 119, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <div id="root"></div>
+
+    <!-- React Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel to transpile JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- ReactPlayer library for video playback (UMD build) -->
+    <script src="https://unpkg.com/react-player@2.16.0/dist/ReactPlayer.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Main App Component
+        function App() {
+            // State to hold the URL for ReactPlayer. The video source is now fixed.
+            const [activeUrl, setActiveUrl] = useState('https://cdn07isb.tamashaweb.com:8087/YlUHeDQb7a/189M/playlist.m3u8');
+
+            return (
+                <div className="min-h-screen flex flex-col items-center justify-center p-4 font-sans text-white">
+                    <div className="w-full max-w-5xl">
+                        
+                        {/* Logo */}
+                        <div className="flex justify-center mb-6">
+                            <img 
+                                src="https://static-cse.canva.com/blob/2095756/1600w-8CIQQEwJHW4.jpg" 
+                                alt="Logo" 
+                                className="h-24 w-24 rounded-full border-4 border-purple-500/50 object-cover shadow-lg"
+                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/96x96/111827/a78bfa?text=Logo'; }}
+                            />
+                        </div>
+
+                        {/* Header */}
+                        <header className="text-center mb-8">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                Watch Cricket Live
+                            </h1>
+                            <p className="text-gray-400">
+                                Made with ♥ by <a href="https://fb.com/iftikharxahid" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Iftikhar Zahid</a>
+                            </p>
+							
+							
+							
+                        </header>
+
+                        {/* Video Player */}
+                        <div className="w-full bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-700/50 video-glow">
+                            <div className="player-wrapper">
+                                <ReactPlayer
+                                    className="react-player"
+                                    url={activeUrl}
+                                    playing={true}
+                                    controls={true}
+                                    width='100%'
+                                    height='100%'
+                                    // Fallback for unsupported media
+                                    onError={(e) => console.error('Error playing video:', e)}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Footer with Logo and Copyright */}
+                        <footer className="text-center mt-10 pt-6 border-t border-gray-700/50">
+                            <p className="text-sm text-gray-500">
+                                &copy; 2025 <a href="https://Zahid.Codes" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:underline">Iftikhar Zahid</a>. All Rights Reserved.
+                            </p>
+                        </footer>
+
+                    </div>
+                </div>
+            );
+        }
+
+        // Render the App to the DOM
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
+
+
+
